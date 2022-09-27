@@ -25,9 +25,9 @@ import javax.persistence.Table;
 public class Client implements Serializable {
 
     @Id
-    @Column(name = "idClient")
+    @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idClient;
     @Column(name = "email", length = 20)
     private String email;
     @Column(name = "name", length = 4000)
@@ -50,7 +50,7 @@ public class Client implements Serializable {
     }
 
     public Client(Integer id, String email, String name, String password, Integer age, List<Message> messages, List<Reservation> reservations) {
-        this.id = id;
+        this.idClient = id;
         this.email = email;
         this.name = name;
         this.password = password;
@@ -60,7 +60,7 @@ public class Client implements Serializable {
     }
 
     public Client(String email, String name, String password, Integer age, List<Message> messages, List<Reservation> reservations) {
-        this.id = null;
+        this.idClient = null;
         this.email = email;
         this.name = name;
         this.password = password;
@@ -69,12 +69,12 @@ public class Client implements Serializable {
         this.reservations = reservations;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getIdClient() {
+        return idClient;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdClient(Integer idClient) {
+        this.idClient = idClient;
     }
 
     public String getName() {

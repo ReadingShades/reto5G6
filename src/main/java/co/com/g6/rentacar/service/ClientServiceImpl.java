@@ -33,10 +33,10 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Client save(Client client) {
-        if (client.getId() == null) {
+        if (client.getIdClient() == null) {
             return clientRepositorio.save(client);
         } else {
-            Optional<Client> client1 = clientRepositorio.getClient(client.getId());
+            Optional<Client> client1 = clientRepositorio.getClient(client.getIdClient());
             if (client1.isEmpty()) {
                 return clientRepositorio.save(client);
             } else {
