@@ -28,4 +28,6 @@ public class MessageRepository {
     public void delete(Message message) { messageCRUDRepository.delete(message); }
     
     public void deleteById(Integer messageId) { messageCRUDRepository.deleteById(messageId); }
+    
+    public void deleteAll() { messageCRUDRepository.deleteAll(); }
 }

@@ -28,4 +28,6 @@ public class CategoryRepository {
     public void delete(Category category) { categoryCRUDRepository.delete(category); }
     
     public void deleteById(Integer categoryId) { categoryCRUDRepository.deleteById(categoryId); }
+    
+    public void deleteAll() { categoryCRUDRepository.deleteAll(); }
 }

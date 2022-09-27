@@ -27,5 +27,7 @@ public class ClientRepository {
     
     public void delete(Client client) { clientCRUDRepository.delete(client); }
     
-    public void deleteById(Integer clientId) { clientCRUDRepository.deleteById(clientId); }    
+    public void deleteById(Integer clientId) { clientCRUDRepository.deleteById(clientId); }
+    
+    public void deleteAll() { clientCRUDRepository.deleteAll(); }
 }

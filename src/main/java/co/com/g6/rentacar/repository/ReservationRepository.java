@@ -28,4 +28,6 @@ public class ReservationRepository {
     public void delete(Reservation reservation) { reservationCRUDRepository.delete(reservation); }
     
     public void deleteById(Integer reservationId) { reservationCRUDRepository.deleteById(reservationId); }
+    
+    public void deleteAll() { reservationCRUDRepository.deleteAll(); }
 }

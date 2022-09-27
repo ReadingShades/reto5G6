@@ -28,4 +28,6 @@ public class MachineRepository {
     public void delete(Machine machine) { machineCRUDRepository.delete(machine); }
     
     public void deleteById(Integer machineId) { machineCRUDRepository.deleteById(machineId); }
+    
+    public void deleteAll() { machineCRUDRepository.deleteAll(); }
 }
