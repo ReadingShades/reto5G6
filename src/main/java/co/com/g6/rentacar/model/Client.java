@@ -31,7 +31,9 @@ public class Client implements Serializable {
     @Column(name = "email", length = 20)
     private String email;
     @Column(name = "name", length = 4000)
-    private String name;    
+    private String name;
+    @Column(name = "password")
+    private String password;
     @Column(name = "age")
     private Integer age;
     // Relationship mapping
@@ -47,18 +49,24 @@ public class Client implements Serializable {
     public Client() {
     }
 
-    public Client(Integer id, String name, String email, Integer age) {
+    public Client(Integer id, String email, String name, String password, Integer age, List<Message> messages, List<Reservation> reservations) {
         this.id = id;
-        this.name = name;
         this.email = email;
+        this.name = name;
+        this.password = password;
         this.age = age;
+        this.messages = messages;
+        this.reservations = reservations;
     }
-    
-     public Client(String name, String email, Integer age) {
+
+    public Client(String email, String name, String password, Integer age, List<Message> messages, List<Reservation> reservations) {
         this.id = null;
-        this.name = name;
         this.email = email;
+        this.name = name;
+        this.password = password;
         this.age = age;
+        this.messages = messages;
+        this.reservations = reservations;
     }
 
     public Integer getId() {
@@ -101,12 +109,21 @@ public class Client implements Serializable {
         this.messages = messages;
     }    
 
-    public List<Reservation> getReservationList() {
+    public List<Reservation> getReservations() {
         return reservations;
     }
 
-    public void setReservationList(List<Reservation> reservations) {
+    public void setReservations(List<Reservation> reservations) {
         this.reservations = reservations;
     }   
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
+    
 }
