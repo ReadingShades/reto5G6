@@ -33,10 +33,10 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     public Reservation save(Reservation reservation) {
-        if (reservation.getId() == null) {
+        if (reservation.getIdReservation() == null) {
             return reservationRepositorio.save(reservation);
         } else {
-            Optional<Reservation> reservation1 = reservationRepositorio.getReservation(reservation.getId());
+            Optional<Reservation> reservation1 = reservationRepositorio.getReservation(reservation.getIdReservation());
             if (reservation1.isEmpty()) {
                 return reservationRepositorio.save(reservation);
             } else {

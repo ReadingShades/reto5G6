@@ -33,10 +33,10 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public Message save(Message message) {
-        if (message.getId() == null) {
+        if (message.getIdMessage() == null) {
             return messageRepositorio.save(message);
         } else {
-            Optional<Message> message1 = messageRepositorio.getMessage(message.getId());
+            Optional<Message> message1 = messageRepositorio.getMessage(message.getIdMessage());
             if (message1.isEmpty()) {
                 return messageRepositorio.save(message);
             } else {

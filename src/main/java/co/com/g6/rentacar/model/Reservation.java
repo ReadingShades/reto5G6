@@ -25,9 +25,9 @@ import javax.persistence.Table;
 public class Reservation implements Serializable {
 
     @Id
-    @Column(name = "idReservation")
+    @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idReservation;
     @Column(name = "startDate")
     private LocalDateTime startDate;
     @Column(name = "devolutionDate")
@@ -52,25 +52,25 @@ public class Reservation implements Serializable {
     }
 
     public Reservation(LocalDateTime startDate, LocalDateTime devolutionDate) {
-        this.id = null;
+        this.idReservation = null;
         this.startDate = startDate;
         this.devolutionDate = devolutionDate;
         this.status = "created";
     }
 
     public Reservation(Integer id, LocalDateTime startDate, LocalDateTime devolutionDate) {
-        this.id = id;
+        this.idReservation = id;
         this.startDate = startDate;
         this.devolutionDate = devolutionDate;
         this.status = "created";
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getIdReservation() {
+        return idReservation;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdReservation(Integer idReservation) {
+        this.idReservation = idReservation;
     }
 
     public LocalDateTime getStartDate() {

@@ -29,11 +29,11 @@ public class Client implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idClient;
     @Column(name = "email", length = 20)
-    private String email;
-    @Column(name = "name", length = 4000)
-    private String name;
+    private String email;    
     @Column(name = "password")
     private String password;
+    @Column(name = "name", length = 4000)
+    private String name;
     @Column(name = "age")
     private Integer age;
     // Relationship mapping

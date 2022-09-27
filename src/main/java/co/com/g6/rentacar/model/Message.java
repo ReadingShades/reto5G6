@@ -24,9 +24,9 @@ import javax.persistence.Table;
 public class Message implements Serializable {
 
     @Id
-    @Column(name = "idMessage")
+    @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idMessage;
     @Column(name = "messageText", length = 4000)
     private String messageText;
     // Relationship mapping
@@ -45,21 +45,21 @@ public class Message implements Serializable {
     }
 
     public Message(Integer id, String messageText) {
-        this.id = id;
+        this.idMessage = id;
         this.messageText = messageText;        
     }
     
      public Message(String messageText) {
-        this.id = null;
+        this.idMessage = null;
         this.messageText = messageText;        
     }
     
-    public Integer getId() {
-        return id;
+    public Integer getIdMessage() {
+        return idMessage;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdMessage(Integer idMessage) {
+        this.idMessage = idMessage;
     }
 
     public String getMessageText() {
