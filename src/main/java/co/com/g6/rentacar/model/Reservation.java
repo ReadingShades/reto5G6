@@ -25,17 +25,15 @@ import javax.persistence.Table;
 public class Reservation implements Serializable {
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "idReservation")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "START_DATE")
+    @Column(name = "startDate")
     private LocalDateTime startDate;
-    @Column(name = "DEVOLUTION_DATE")
+    @Column(name = "devolutionDate")
     private LocalDateTime devolutionDate;
-    @Column(name = "STATUS")
-    private String status;
-    @Column(name = "SCORE")
-    private Integer score;
+    @Column(name = "status")
+    private String status;    
     // Relationship mapping
     // Unidirectional Many-to-One relationship to MACHINE table
     @ManyToOne
@@ -47,6 +45,8 @@ public class Reservation implements Serializable {
     @JoinColumn(name = "CLIENT_ID")
     @JsonIgnoreProperties({"messages","reservations"})
     private Client client;
+    @Column(name = "score")
+    private Integer score;
 
     public Reservation() {
     }

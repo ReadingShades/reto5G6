@@ -24,10 +24,10 @@ import javax.persistence.Table;
 public class Message implements Serializable {
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "idMessage")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "MESSAGETEXT", length = 4000)
+    @Column(name = "messageText", length = 4000)
     private String messageText;
     // Relationship mapping
 //    // Unidirectional Many-to-One relationship to MACHINE table

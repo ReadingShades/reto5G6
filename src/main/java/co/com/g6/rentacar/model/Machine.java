@@ -14,7 +14,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -28,25 +27,22 @@ import javax.persistence.Table;
 public class Machine implements Serializable {
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "BRAND", length=20)    
-    private String brand;
-    @Column(name = "DESCRIPTION")
-    private String description;
-    @Column(name = "NAME", length=4000)
+    @Column(name = "name", length=4000)
     private String name;
-    @Column(name = "YEAR")
+    @Column(name = "brand", length=20)    
+    private String brand;
+    @Column(name = "year")
     private Integer year;
+    @Column(name = "description")
+    private String description;    
     // Relationship mapping
     // Bidirectional Many-to-One relationship to CATEGORY table
     @ManyToOne
     @JsonIgnoreProperties("machines")
-    @JoinTable(
-            name = "MACHINE_CATEGORY",
-            joinColumns = @JoinColumn(name = "MACHINE_ID"),
-            inverseJoinColumns = @JoinColumn(name = "CATEGORY_ID"))
+    @JoinColumn(name="categoryId")
     private Category category;
     // Relationship mapping
     // Bidirectional One-to-One relationship to MESSAGE table

@@ -25,14 +25,14 @@ import javax.persistence.Table;
 public class Client implements Serializable {
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "idClient")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "NAME", length = 4000)
-    private String name;
-    @Column(name = "EMAIL", length = 20)
+    @Column(name = "email", length = 20)
     private String email;
-    @Column(name = "AGE")
+    @Column(name = "name", length = 4000)
+    private String name;    
+    @Column(name = "age")
     private Integer age;
     // Relationship mapping
     // Bidirectional One-to-One relationship to MESSAGE table

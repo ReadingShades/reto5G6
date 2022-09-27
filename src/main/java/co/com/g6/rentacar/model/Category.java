@@ -25,12 +25,12 @@ import javax.persistence.Table;
 public class Category implements Serializable {
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "idClient")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "NAME")
+    @Column(name = "name")
     private String name;
-    @Column(name = "DESCRIPTION")
+    @Column(name = "description")
     private String description;
     // Relationship mapping
     // Bidirectional One-to-Many relationship to MACHINE table
