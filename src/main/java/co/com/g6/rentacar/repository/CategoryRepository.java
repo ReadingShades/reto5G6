@@ -25,6 +25,8 @@ public class CategoryRepository {
     
     public Category save(Category category) { return categoryCRUDRepository.save(category); }
     
+    //public Iterable<Category> saveAll(List<Category> category) { return categoryCRUDRepository.saveAll(category); }
+    
     public void delete(Category category) { categoryCRUDRepository.delete(category); }
     
     public void deleteById(Integer categoryId) { categoryCRUDRepository.deleteById(categoryId); }
