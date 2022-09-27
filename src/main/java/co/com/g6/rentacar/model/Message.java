@@ -27,7 +27,7 @@ public class Message implements Serializable {
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idMessage;
-    @Column(name = "messageText", length = 4000)
+    @Column(name = "messageText", length = 250)
     private String messageText;
     // Relationship mapping
 //    // Unidirectional Many-to-One relationship to MACHINE table

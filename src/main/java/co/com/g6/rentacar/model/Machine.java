@@ -30,13 +30,13 @@ public class Machine implements Serializable {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "name", length=4000)
+    @Column(name = "name", length = 45)
     private String name;
-    @Column(name = "brand", length=20)    
+    @Column(name = "brand", length = 45)
     private String brand;
-    @Column(name = "year")
+    @Column(name = "year", length = 4)
     private Integer year;
-    @Column(name = "description")
+    @Column(name = "description", length = 250)
     private String description;    
     // Relationship mapping
     // Bidirectional Many-to-One relationship to CATEGORY table

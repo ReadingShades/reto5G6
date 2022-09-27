@@ -30,9 +30,9 @@ public class Client implements Serializable {
     private Integer idClient;
     @Column(name = "email", length = 20)
     private String email;    
-    @Column(name = "password")
+    @Column(name = "password", length = 45)
     private String password;
-    @Column(name = "name", length = 4000)
+    @Column(name = "name", length = 250)
     private String name;
     @Column(name = "age")
     private Integer age;

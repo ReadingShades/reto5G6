@@ -28,9 +28,9 @@ public class Category implements Serializable {
     @Column(name = "idClient")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "name")
+    @Column(name = "name", length = 45)
     private String name;
-    @Column(name = "description")
+    @Column(name = "description", length = 250)
     private String description;
     // Relationship mapping
     // Bidirectional One-to-Many relationship to MACHINE table
