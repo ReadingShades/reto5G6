@@ -25,4 +25,6 @@ public interface MachineService {
     public void delete(Machine machine);
     
     public void deleteById(Integer id);
+    
+    public void deleteAll();
 }

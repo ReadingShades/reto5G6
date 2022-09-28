@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>co.com.g6</groupId>
-    <artifactId>rentacar</artifactId>
+    <artifactId>rentacar-reto3</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>rentACar</name>
-    <description>MinTIC G6 - proyecto final</description>
+    <name>rentacar-reto3</name>
+    <description>MinTIC G6 - proyecto final - Version reto 3</description>
     <properties>
         <java.version>11</java.version>
     </properties>

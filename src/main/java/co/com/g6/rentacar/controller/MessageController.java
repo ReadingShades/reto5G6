@@ -62,4 +62,10 @@ public class MessageController {
     public void deleteById(@PathVariable("id") Integer Id) {
         messageService.deleteById(Id);
     }
+    
+    @DeleteMapping("/delete/all")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteAll() {
+        messageService.deleteAll();
+    }
 }

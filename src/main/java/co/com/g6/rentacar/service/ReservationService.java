@@ -25,4 +25,6 @@ public interface ReservationService {
     public void delete(Reservation reservation);
     
     public void deleteById(Integer id);
+    
+    public void deleteAll();
 }

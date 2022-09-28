@@ -25,4 +25,6 @@ public interface ClientService {
     public void delete(Client client);
     
     public void deleteById(Integer id);
+    
+    public void deleteAll();
 }

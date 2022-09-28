@@ -59,4 +59,9 @@ public class MessageServiceImpl implements MessageService {
     public void deleteById(Integer id) {
         messageRepositorio.deleteById(id);
     }
+
+    @Override
+    public void deleteAll() {
+        messageRepositorio.deleteAll();
+    }
 }

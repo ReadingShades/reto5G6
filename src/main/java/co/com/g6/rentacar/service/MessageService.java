@@ -25,4 +25,6 @@ public interface MessageService {
     public void delete(Message message);
     
     public void deleteById(Integer id);
+    
+    public void deleteAll();
 }

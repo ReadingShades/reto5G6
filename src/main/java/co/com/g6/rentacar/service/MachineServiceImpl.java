@@ -59,4 +59,9 @@ public class MachineServiceImpl implements MachineService {
     public void deleteById(Integer id) {
         machineRepositorio.deleteById(id);
     }
+
+    @Override
+    public void deleteAll() {
+        machineRepositorio.deleteAll();
+    }
 }
