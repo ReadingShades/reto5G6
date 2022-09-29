@@ -34,7 +34,7 @@ public class Machine implements Serializable {
     private String name;
     @Column(name = "brand", length = 45)
     private String brand;
-    @Column(name = "year", length = 4)
+    @Column(name = "year")
     private Integer year;
     @Column(name = "description", length = 250)
     private String description;    
