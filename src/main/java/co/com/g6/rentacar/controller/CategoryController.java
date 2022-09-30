@@ -41,7 +41,7 @@ public class CategoryController {
         return categoryService.getCategory(Id);
     }
 
-    @PostMapping("/save")
+    @PostMapping({"/save","all"})
     @ResponseStatus(HttpStatus.CREATED)
     public Category save(@RequestBody Category category) {
         return categoryService.save(category);
@@ -53,19 +53,19 @@ public class CategoryController {
         return categoryService.update(category);
     }
     
-    @DeleteMapping("/delete")
+    @DeleteMapping("/")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@RequestBody Category category) {
         categoryService.delete(category);
     }
     
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteById(@PathVariable("id") Integer Id) {
         categoryService.deleteById(Id);
     }
     
-    @DeleteMapping("/delete/all")
+    @DeleteMapping("/all")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteAll() {
         categoryService.deleteAll();

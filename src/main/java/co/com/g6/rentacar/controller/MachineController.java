@@ -41,7 +41,7 @@ public class MachineController {
         return machineService.getMachine(Id);
     }
 
-    @PostMapping("/save")
+    @PostMapping({"/save","all"})
     @ResponseStatus(HttpStatus.CREATED)
     public Machine save(@RequestBody Machine machine) {
         return machineService.save(machine);
@@ -53,19 +53,19 @@ public class MachineController {
         return machineService.update(machine);
     }
     
-    @DeleteMapping("/delete")
+    @DeleteMapping("/")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@RequestBody Machine machine) {
         machineService.delete(machine);
     }
     
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteById(@PathVariable("id") Integer Id) {
         machineService.deleteById(Id);
     }
     
-    @DeleteMapping("/delete/all")
+    @DeleteMapping("/all")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteAll() {
         machineService.deleteAll();

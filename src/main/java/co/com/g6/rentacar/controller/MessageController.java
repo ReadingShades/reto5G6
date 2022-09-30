@@ -41,7 +41,7 @@ public class MessageController {
         return messageService.getMessage(Id);
     }
 
-    @PostMapping("/save")
+    @PostMapping({"/save","all"})
     @ResponseStatus(HttpStatus.CREATED)
     public Message save(@RequestBody Message message) {
         return messageService.save(message);
@@ -53,19 +53,19 @@ public class MessageController {
         return messageService.update(message);
     }
     
-    @DeleteMapping("/delete")
+    @DeleteMapping("/")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@RequestBody Message message) {
         messageService.delete(message);
     }
     
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteById(@PathVariable("id") Integer Id) {
         messageService.deleteById(Id);
     }
     
-    @DeleteMapping("/delete/all")
+    @DeleteMapping("/all")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteAll() {
         messageService.deleteAll();

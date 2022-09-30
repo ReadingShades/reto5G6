@@ -41,7 +41,7 @@ public class ClientController {
         return clientService.getClient(Id);
     }
 
-    @PostMapping("/save")
+    @PostMapping({"/save","all"})
     @ResponseStatus(HttpStatus.CREATED)
     public Client save(@RequestBody Client client) {
         return clientService.save(client);
@@ -53,19 +53,19 @@ public class ClientController {
         return clientService.update(client);
     }
     
-    @DeleteMapping("/delete")
+    @DeleteMapping("/")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@RequestBody Client client) {
         clientService.delete(client);
     }
     
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteById(@PathVariable("id") Integer Id) {
         clientService.deleteById(Id);
     }
     
-    @DeleteMapping("/delete/all")
+    @DeleteMapping("/all")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteAll() {
         clientService.deleteAll();
