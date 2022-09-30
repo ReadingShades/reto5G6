@@ -46,8 +46,25 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category update(Category category) {
-        return categoryRepositorio.save(category);
+    public Category update(Category dataCarrier) {        
+        if (dataCarrier.getId() != null) {
+            // Optional allows us to check for nullability/existance of an entry
+            Optional<Category> currentEntry = categoryRepositorio.getCategory(dataCarrier.getId());            
+            if (currentEntry.isEmpty()) {
+                // If no matching Id/Entry is found then create a new dataCarrier/entry
+                return categoryRepositorio.save(dataCarrier);
+            } else {
+                // If a matching Id/Entry is found then retrieve current entry 
+                // to and update fields but preserve relations
+                Category updatedEntry = currentEntry.get();                
+                updatedEntry.setName(dataCarrier.getName());
+                updatedEntry.setDescription(dataCarrier.getDescription());
+                return categoryRepositorio.save(updatedEntry);
+            }
+        } else {
+            // If Id is missing from dataCarrier then return it as response
+            return dataCarrier;
+        }       
     }
 
     @Override

@@ -46,8 +46,27 @@ public class MachineServiceImpl implements MachineService {
     }
 
     @Override
-    public Machine update(Machine machine) {
-        return machineRepositorio.save(machine);
+    public Machine update(Machine dataCarrier) {
+        if (dataCarrier.getId()!= null) {
+            // Optional allows us to check for nullability/existance of an entry
+            Optional<Machine> currentEntry = machineRepositorio.getMachine(dataCarrier.getId());
+            if (currentEntry.isEmpty()) {
+                // If no matching Id/Entry is found then create a new dataCarrier/entry
+                return machineRepositorio.save(dataCarrier);
+            } else {
+                // If a matching Id/Entry is found then retrieve current entry 
+                // to and update fields but preserve relations
+                Machine updatedEntry = currentEntry.get();
+                updatedEntry.setName(dataCarrier.getName());
+                updatedEntry.setBrand(dataCarrier.getBrand());
+                updatedEntry.setYear(dataCarrier.getYear());
+                updatedEntry.setDescription(dataCarrier.getDescription());
+                return machineRepositorio.save(updatedEntry);
+            }
+        } else {
+            // If Id is missing from dataCarrier then return it as response
+            return dataCarrier;            
+        }
     }
 
     @Override

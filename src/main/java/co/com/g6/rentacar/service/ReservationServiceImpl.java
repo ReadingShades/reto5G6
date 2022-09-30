@@ -46,8 +46,27 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public Reservation update(Reservation reservation) {
-        return reservationRepositorio.save(reservation);
+    public Reservation update(Reservation dataCarrier) {
+        if (dataCarrier.getIdReservation()!= null) {
+            // Optional allows us to check for nullability/existance of an entry
+            Optional<Reservation> currentEntry = reservationRepositorio.getReservation(dataCarrier.getIdReservation());
+            if (currentEntry.isEmpty()) {
+                // If no matching Id/Entry is found then create a new dataCarrier/entry
+                return reservationRepositorio.save(dataCarrier);
+            } else {
+                // If a matching Id/Entry is found then retrieve current entry 
+                // to and update fields but preserve relations
+                Reservation updatedEntry = currentEntry.get();
+                updatedEntry.setStartDate(dataCarrier.getStartDate());
+                updatedEntry.setDevolutionDate(dataCarrier.getDevolutionDate());
+                updatedEntry.setStatus(dataCarrier.getStatus());
+                updatedEntry.setScore(dataCarrier.getScore());
+                return reservationRepositorio.save(updatedEntry);
+            }
+        } else {
+            // If Id is missing from dataCarrier then return it as response
+            return dataCarrier;            
+        }
     }
 
     @Override

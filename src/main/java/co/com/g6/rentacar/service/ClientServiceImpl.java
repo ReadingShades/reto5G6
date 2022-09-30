@@ -46,8 +46,27 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Client update(Client client) {
-        return clientRepositorio.save(client);
+    public Client update(Client dataCarrier) {
+        if (dataCarrier.getIdClient()!= null) {
+            // Optional allows us to check for nullability/existance of an entry
+            Optional<Client> currentEntry = clientRepositorio.getClient(dataCarrier.getIdClient());
+            if (currentEntry.isEmpty()) {
+                // If no matching Id/Entry is found then create a new dataCarrier/entry
+                return clientRepositorio.save(dataCarrier);
+            } else {
+                // If a matching Id/Entry is found then retrieve current entry 
+                // to and update fields but preserve relations
+                Client updatedEntry = currentEntry.get();
+                updatedEntry.setEmail(dataCarrier.getEmail());
+                updatedEntry.setPassword(dataCarrier.getPassword());
+                updatedEntry.setName(dataCarrier.getName());
+                updatedEntry.setAge(dataCarrier.getAge());
+                return clientRepositorio.save(updatedEntry);
+            }
+        } else {
+            // If Id is missing from dataCarrier then return it as response
+            return dataCarrier;            
+        }
     }
 
     @Override

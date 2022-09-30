@@ -46,8 +46,24 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public Message update(Message message) {
-        return messageRepositorio.save(message);
+    public Message update(Message dataCarrier) {
+        if (dataCarrier.getIdMessage()!= null) {
+            // Optional allows us to check for nullability/existance of an entry
+            Optional<Message> currentEntry = messageRepositorio.getMessage(dataCarrier.getIdMessage());
+            if (currentEntry.isEmpty()) {
+                // If no matching Id/Entry is found then create a new dataCarrier/entry
+                return messageRepositorio.save(dataCarrier);
+            } else {
+                // If a matching Id/Entry is found then retrieve current entry 
+                // to and update fields but preserve relations
+                Message updatedEntry = currentEntry.get();
+                updatedEntry.setMessageText(dataCarrier.getMessageText());                
+                return messageRepositorio.save(updatedEntry);
+            }
+        } else {
+            // If Id is missing from dataCarrier then return it as response
+            return dataCarrier;            
+        }
     }
 
     @Override
