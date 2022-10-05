@@ -83,12 +83,14 @@ public class ReservationController {
     }
 
     @GetMapping("/report-dates/{date1}/{date2}")
-    public List<Reservation> getReservationsInPeriod(@PathVariable("date1") String date1, @PathVariable("date2") String date2) {        
-        ZoneId defaultZoneId = ZoneId.systemDefault();
-        LocalDate date1F = LocalDate.parse(date1);
-        LocalDate date2F = LocalDate.parse(date2);
-        Date date1FD = Date.from(date1F.atStartOfDay(defaultZoneId).toInstant());
-        Date date2FD = Date.from(date2F.atStartOfDay(defaultZoneId).toInstant());        
-        return reservationService.getReservationsBetweenDates(date1FD, date2FD);
+    public List<Reservation> getReservationsInPeriod(@PathVariable("date1") String date1, @PathVariable("date2") String date2) {                
+        return reservationService.getReservationsBetweenDates(convertDateFromStringFormat(date1), convertDateFromStringFormat(date2));
+    }
+    
+    Date convertDateFromStringFormat(String stringDate){
+        //ZoneId defaultZoneId = ZoneId.systemDefault();
+        //LocalDate dateLocalDateFormat = LocalDate.parse(stringDate);
+        //return Date.from(dateLocalDateFormat.atStartOfDay(defaultZoneId).toInstant());
+        return Date.from(LocalDate.parse(stringDate).atStartOfDay(ZoneId.systemDefault()).toInstant());
     }
 }
