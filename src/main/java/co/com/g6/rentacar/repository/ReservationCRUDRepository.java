@@ -5,6 +5,8 @@
 package co.com.g6.rentacar.repository;
 
 import co.com.g6.rentacar.model.Reservation;
+import java.util.Date;
+import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
 /**
@@ -12,5 +14,6 @@ import org.springframework.data.repository.CrudRepository;
  * @author Caramu
  */
 public interface ReservationCRUDRepository extends CrudRepository<Reservation, Integer> {
-    
+    Integer countByStatusIs(String status);
+    List<Reservation> findByStartDateBetween(Date date1, Date date2);
 }

@@ -5,6 +5,8 @@
 package co.com.g6.rentacar.service;
 
 import co.com.g6.rentacar.model.Reservation;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,4 +29,8 @@ public interface ReservationService {
     public void deleteById(Integer id);
     
     public void deleteAll();
+    
+    public HashMap<String,Integer> getStatusReport();
+    
+    public List<Reservation> getReservationsBetweenDates(Date date1, Date date2);
 }

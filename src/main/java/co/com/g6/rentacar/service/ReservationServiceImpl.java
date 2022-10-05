@@ -6,6 +6,8 @@ package co.com.g6.rentacar.service;
 
 import co.com.g6.rentacar.model.Reservation;
 import co.com.g6.rentacar.repository.ReservationRepository;
+import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,5 +84,18 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public void deleteAll() {
         reservationRepositorio.deleteAll();
+    }
+
+    @Override
+    public LinkedHashMap<String, Integer> getStatusReport() {
+        LinkedHashMap<String, Integer> statusReport = new LinkedHashMap<String, Integer>();
+        statusReport.put("completed", reservationRepositorio.getCountByStatus("completed"));
+        statusReport.put("cancelled", reservationRepositorio.getCountByStatus("cancelled"));
+        return statusReport;
+    }
+
+    @Override
+    public List<Reservation> getReservationsBetweenDates(Date date1, Date date2) {
+        return reservationRepositorio.getReservationsBetweenDates(date1, date2);
     }
 }

@@ -5,6 +5,7 @@
 package co.com.g6.rentacar.repository;
 
 import co.com.g6.rentacar.model.Reservation;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,4 +31,8 @@ public class ReservationRepository {
     public void deleteById(Integer reservationId) { reservationCRUDRepository.deleteById(reservationId); }
     
     public void deleteAll() { reservationCRUDRepository.deleteAll(); }
+    
+    public Integer getCountByStatus(String status) { return reservationCRUDRepository.countByStatusIs(status); }
+    
+    public List<Reservation> getReservationsBetweenDates(Date date1, Date date2) { return reservationCRUDRepository.findByStartDateBetween(date1, date2); }
 }

@@ -6,6 +6,10 @@ package co.com.g6.rentacar.controller;
 
 import co.com.g6.rentacar.model.Reservation;
 import co.com.g6.rentacar.service.ReservationServiceImpl;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +33,12 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin
 @RequestMapping("/api/Reservation")
 public class ReservationController {
+
     @Autowired
     private ReservationServiceImpl reservationService;
+
     @GetMapping("/all")
-    public List<Reservation> getReservations(){
+    public List<Reservation> getReservations() {
         return reservationService.getAll();
     }
 
@@ -41,33 +47,48 @@ public class ReservationController {
         return reservationService.getReservation(Id);
     }
 
-    @PostMapping({"/save","all"})
+    @PostMapping({"/save", "all"})
     @ResponseStatus(HttpStatus.CREATED)
     public Reservation save(@RequestBody Reservation reservation) {
         return reservationService.save(reservation);
     }
-    
+
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
     public Reservation update(@RequestBody Reservation reservation) {
         return reservationService.update(reservation);
     }
-    
+
     @DeleteMapping("/")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@RequestBody Reservation reservation) {
         reservationService.delete(reservation);
     }
-    
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteById(@PathVariable("id") Integer Id) {
         reservationService.deleteById(Id);
     }
-    
+
     @DeleteMapping("/all")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteAll() {
         reservationService.deleteAll();
+    }
+
+    @GetMapping("/report-status")
+    public HashMap<String, Integer> getReportStatus() {
+        return reservationService.getStatusReport();
+    }
+
+    @GetMapping("/report-dates/{date1}/{date2}")
+    public List<Reservation> getReservationsInPeriod(@PathVariable("date1") String date1, @PathVariable("date2") String date2) {        
+        ZoneId defaultZoneId = ZoneId.systemDefault();
+        LocalDate date1F = LocalDate.parse(date1);
+        LocalDate date2F = LocalDate.parse(date2);
+        Date date1FD = Date.from(date1F.atStartOfDay(defaultZoneId).toInstant());
+        Date date2FD = Date.from(date2F.atStartOfDay(defaultZoneId).toInstant());        
+        return reservationService.getReservationsBetweenDates(date1FD, date2FD);
     }
 }
