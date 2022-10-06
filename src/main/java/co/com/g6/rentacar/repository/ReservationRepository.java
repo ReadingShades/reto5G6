@@ -35,4 +35,6 @@ public class ReservationRepository {
     public Integer getCountByStatus(String status) { return reservationCRUDRepository.countByStatusIs(status); }
     
     public List<Reservation> getReservationsBetweenDates(Date date1, Date date2) { return reservationCRUDRepository.findByStartDateBetween(date1, date2); }
+    
+    public List<ReservationCountPerClientProjection> getReservationsTotalByClient() { return reservationCRUDRepository.getReservationsCountByClient(); }
 }

@@ -21,7 +21,8 @@ import javax.persistence.Table;
  * @author Caramu
  */
 @Entity
-@Table(name = "CLIENT")
+//@Table(name = "CLIENT")
+@Table(name = "Client")
 public class Client implements Serializable {
 
     @Id
@@ -124,6 +125,9 @@ public class Client implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Client{" + "idClient=" + idClient + ", email=" + email + ", password=" + password + ", name=" + name + ", age=" + age + ", messages=" + messages + ", reservations=" + reservations + '}';
+    }
 }

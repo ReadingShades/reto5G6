@@ -10,16 +10,17 @@ import co.com.g6.rentacar.model.Client;
  *
  * @author Caramu
  */
-public class ReservationClientDTO {
-    private final String element = "client";    
+public class ReservationCountByClientDTO {
+    private final Integer total;
     private final Client client;
 
-    public ReservationClientDTO(Client client) {
+    public ReservationCountByClientDTO(Integer total, Client client) {
+        this.total = total;
         this.client = client;
     }
 
-    public String getElement() {
-        return element;
+    public Integer getTotal() {
+        return total;
     }
 
     public Client getClient() {

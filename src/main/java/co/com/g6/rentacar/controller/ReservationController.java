@@ -5,6 +5,7 @@
 package co.com.g6.rentacar.controller;
 
 import co.com.g6.rentacar.model.Reservation;
+import co.com.g6.rentacar.service.ReservationCountByClientDTO;
 import co.com.g6.rentacar.service.ReservationServiceImpl;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -92,5 +93,10 @@ public class ReservationController {
         //LocalDate dateLocalDateFormat = LocalDate.parse(stringDate);
         //return Date.from(dateLocalDateFormat.atStartOfDay(defaultZoneId).toInstant());
         return Date.from(LocalDate.parse(stringDate).atStartOfDay(ZoneId.systemDefault()).toInstant());
+    }
+    
+    @GetMapping("/report-clients")
+    public List<ReservationCountByClientDTO> getReservationsInPeriod(){
+        return reservationService.getClientReport();
     }
 }

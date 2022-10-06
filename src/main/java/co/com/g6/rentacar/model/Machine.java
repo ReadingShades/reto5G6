@@ -23,7 +23,8 @@ import javax.persistence.Table;
  * @author Caramu
  */
 @Entity
-@Table(name = "MACHINE")
+//@Table(name = "MACHINE")
+@Table(name = "Machine")
 public class Machine implements Serializable {
 
     @Id

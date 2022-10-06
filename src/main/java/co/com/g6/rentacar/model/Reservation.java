@@ -21,7 +21,8 @@ import javax.persistence.Table;
  * @author Caramu
  */
 @Entity
-@Table(name = "RESERVATION")
+//@Table(name = "RESERVATION")
+@Table(name = "Reservation")
 public class Reservation implements Serializable {
 
     @Id
@@ -37,12 +38,12 @@ public class Reservation implements Serializable {
     // Relationship mapping
     // Unidirectional Many-to-One relationship to MACHINE table
     @ManyToOne
-    @JoinColumn(name = "MACHINE_ID")
+    @JoinColumn(name = "idMachine")
     @JsonIgnoreProperties("reservations")
     private Machine machine;
     // Bidirectional Many-to-One relationship to CLIENT table
     @ManyToOne
-    @JoinColumn(name = "CLIENT_ID")
+    @JoinColumn(name = "idClient")
     @JsonIgnoreProperties({"messages","reservations"})
     private Client client;
     @Column(name = "score")

@@ -4,13 +4,11 @@
  */
 package co.com.g6.rentacar.repository;
 
-import co.com.g6.rentacar.model.Client;
-
 /**
  *
  * @author Caramu
  */
-public interface ReservationCountClientProjection {
-    Integer getReservationsCount();
-    Client getClient();
+public interface ReservationCountPerClientProjection {
+    Integer getReservationCount();
+    Integer getIdClient();
 }
