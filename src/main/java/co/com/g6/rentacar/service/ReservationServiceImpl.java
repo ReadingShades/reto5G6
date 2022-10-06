@@ -9,6 +9,8 @@ import co.com.g6.rentacar.model.Reservation;
 import co.com.g6.rentacar.repository.ClientRepository;
 import co.com.g6.rentacar.repository.ReservationCountPerClientProjection;
 import co.com.g6.rentacar.repository.ReservationRepository;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -23,10 +25,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ReservationServiceImpl implements ReservationService {
-    
+
     @Autowired
     private ReservationRepository reservationRepositorio;
-    
+
     @Autowired
     private ClientRepository clientRepositorio;
 
@@ -56,7 +58,7 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     public Reservation update(Reservation dataCarrier) {
-        if (dataCarrier.getIdReservation()!= null) {
+        if (dataCarrier.getIdReservation() != null) {
             // Optional allows us to check for nullability/existance of an entry
             Optional<Reservation> currentEntry = reservationRepositorio.getReservation(dataCarrier.getIdReservation());
             if (currentEntry.isEmpty()) {
@@ -74,7 +76,7 @@ public class ReservationServiceImpl implements ReservationService {
             }
         } else {
             // If Id is missing from dataCarrier then return it as response
-            return dataCarrier;            
+            return dataCarrier;
         }
     }
 
@@ -107,23 +109,35 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
+    public List<Reservation> getReservationsBetweenDates(String date1, String date2) {
+        return reservationRepositorio.getReservationsBetweenDates(convertDateFromStringFormat(date1), convertDateFromStringFormat(date2));
+    }
+
+    Date convertDateFromStringFormat(String stringDate) {
+        //ZoneId defaultZoneId = ZoneId.systemDefault();
+        //LocalDate dateLocalDateFormat = LocalDate.parse(stringDate);
+        //return Date.from(dateLocalDateFormat.atStartOfDay(defaultZoneId).toInstant());
+        return Date.from(LocalDate.parse(stringDate).atStartOfDay(ZoneId.systemDefault()).toInstant());
+    }
+
+    @Override
     public List<ReservationCountByClientDTO> getClientReport() {
         // LinkedHashMap retains insertion order which is necessary to construct a Desc list
         ArrayList<ReservationCountByClientDTO> clientReport = new ArrayList<>();
         // We take the list of all clients and then we'll move them to a LinkedHashMap<idClient, Client>
         ArrayList<Client> clientList = (ArrayList) clientRepositorio.getAll();
         LinkedHashMap<Integer, Client> clientMap = new LinkedHashMap<>();
-        for (int i = 0, n = clientList.size(); i < n; i++) {            
-            clientMap.put(clientList.get(i).getIdClient(), clientList.get(i));            
+        for (int i = 0, n = clientList.size(); i < n; i++) {
+            clientMap.put(clientList.get(i).getIdClient(), clientList.get(i));
         }
         // We get the DescList of reservations count per client and then with the previous list 
         // construct the report through DTOs
         ArrayList<ReservationCountPerClientProjection> reservationCountDescList = (ArrayList) reservationRepositorio.getReservationsTotalByClient();
-        for(int i = 0, n = reservationCountDescList.size(); i < n; i++) {
+        for (int i = 0, n = reservationCountDescList.size(); i < n; i++) {
             //System.out.println(reservationCountDescList.get(i).getReservationCount());
             Integer total = reservationCountDescList.get(i).getReservationCount();
             Client respectiveClient = clientMap.get(reservationCountDescList.get(i).getIdClient());
-            clientReport.add(new ReservationCountByClientDTO(total, respectiveClient));
+            clientReport.add(ReservationCountByClientDTO.createDTO(total, respectiveClient));
         }
         return clientReport;
     }

@@ -34,5 +34,7 @@ public interface ReservationService {
     
     public List<Reservation> getReservationsBetweenDates(Date date1, Date date2);
     
+    public List<Reservation> getReservationsBetweenDates(String date1, String date2);
+    
     public List<ReservationCountByClientDTO> getClientReport();
 }

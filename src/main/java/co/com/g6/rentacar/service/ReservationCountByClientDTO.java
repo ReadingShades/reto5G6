@@ -18,6 +18,10 @@ public class ReservationCountByClientDTO {
         this.total = total;
         this.client = client;
     }
+    
+    public static ReservationCountByClientDTO createDTO(Integer total, Client client){
+        return new ReservationCountByClientDTO(total, client);
+    }
 
     public Integer getTotal() {
         return total;

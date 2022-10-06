@@ -7,9 +7,6 @@ package co.com.g6.rentacar.controller;
 import co.com.g6.rentacar.model.Reservation;
 import co.com.g6.rentacar.service.ReservationCountByClientDTO;
 import co.com.g6.rentacar.service.ReservationServiceImpl;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -85,14 +82,7 @@ public class ReservationController {
 
     @GetMapping("/report-dates/{date1}/{date2}")
     public List<Reservation> getReservationsInPeriod(@PathVariable("date1") String date1, @PathVariable("date2") String date2) {                
-        return reservationService.getReservationsBetweenDates(convertDateFromStringFormat(date1), convertDateFromStringFormat(date2));
-    }
-    
-    Date convertDateFromStringFormat(String stringDate){
-        //ZoneId defaultZoneId = ZoneId.systemDefault();
-        //LocalDate dateLocalDateFormat = LocalDate.parse(stringDate);
-        //return Date.from(dateLocalDateFormat.atStartOfDay(defaultZoneId).toInstant());
-        return Date.from(LocalDate.parse(stringDate).atStartOfDay(ZoneId.systemDefault()).toInstant());
+        return reservationService.getReservationsBetweenDates(date1, date2);
     }
     
     @GetMapping("/report-clients")

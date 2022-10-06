@@ -22,11 +22,11 @@ import javax.persistence.Table;
  */
 @Entity
 //@Table(name = "CATEGORY")
-@Table(name = "Category")
+@Table(name = "Categories")
 public class Category implements Serializable {
 
     @Id
-    @Column(name = "idClient")    
+    @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(name = "name", length = 45)

@@ -24,11 +24,11 @@ import javax.persistence.Table;
  */
 @Entity
 //@Table(name = "MACHINE")
-@Table(name = "Machine")
+@Table(name = "Machines")
 public class Machine implements Serializable {
 
     @Id
-    @Column(name = "id")
+    @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(name = "name", length = 45)
@@ -43,7 +43,7 @@ public class Machine implements Serializable {
     // Bidirectional Many-to-One relationship to CATEGORY table
     @ManyToOne
     @JsonIgnoreProperties("machines")
-    @JoinColumn(name="categoryId")
+    @JoinColumn(name="idCategory", referencedColumnName = "id")
     private Category category;
     // Relationship mapping
     // Bidirectional One-to-One relationship to MESSAGE table
