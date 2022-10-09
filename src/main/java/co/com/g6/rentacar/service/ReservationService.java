@@ -32,9 +32,9 @@ public interface ReservationService {
     
     public HashMap<String,Integer> getStatusReport();
     
-    public List<Reservation> getReservationsBetweenDates(Date date1, Date date2);
+    public List<Reservation> getReservationsBetweenDates(Date startDate, Date endDate);
     
-    public List<Reservation> getReservationsBetweenDates(String date1, String date2);
+    public List<Reservation> getReservationsBetweenDates(String startDate, String endDate);
     
     public List<ReservationCountByClientDTO> getClientReport();
 }

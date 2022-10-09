@@ -80,9 +80,9 @@ public class ReservationController {
         return reservationService.getStatusReport();
     }
 
-    @GetMapping("/report-dates/{date1}/{date2}")
-    public List<Reservation> getReservationsInPeriod(@PathVariable("date1") String date1, @PathVariable("date2") String date2) {                
-        return reservationService.getReservationsBetweenDates(date1, date2);
+    @GetMapping("/report-dates/{startDate}/{endDate}")
+    public List<Reservation> getReservationsInPeriod(@PathVariable("startDate") String startDate, @PathVariable("endDate") String endDate) {                
+        return reservationService.getReservationsBetweenDates(startDate, endDate);
     }
     
     @GetMapping("/report-clients")

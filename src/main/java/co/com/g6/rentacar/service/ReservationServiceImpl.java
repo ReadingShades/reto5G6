@@ -104,13 +104,13 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public List<Reservation> getReservationsBetweenDates(Date date1, Date date2) {
-        return reservationRepositorio.getReservationsBetweenDates(date1, date2);
+    public List<Reservation> getReservationsBetweenDates(Date startDate, Date endDate) {
+        return reservationRepositorio.getReservationsBetweenDates(startDate, endDate);
     }
 
     @Override
-    public List<Reservation> getReservationsBetweenDates(String date1, String date2) {
-        return reservationRepositorio.getReservationsBetweenDates(convertDateFromStringFormat(date1), convertDateFromStringFormat(date2));
+    public List<Reservation> getReservationsBetweenDates(String startDate, String endDate) {
+        return reservationRepositorio.getReservationsBetweenDates(convertDateFromStringFormat(startDate), convertDateFromStringFormat(endDate));
     }
 
     Date convertDateFromStringFormat(String stringDate) {

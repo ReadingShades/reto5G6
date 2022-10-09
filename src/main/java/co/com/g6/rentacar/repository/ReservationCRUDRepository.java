@@ -18,9 +18,10 @@ public interface ReservationCRUDRepository extends CrudRepository<Reservation, I
 
     Integer countByStatusIs(String status);
 
-    List<Reservation> findByStartDateBetween(Date date1, Date date2);
+    List<Reservation> findByStartDateBetween(Date startDate, Date endDate);
 
     @Query(value = "SELECT COUNT(reservations.ID_RESERVATION ) AS ReservationCount, reservations.ID_CLIENT  AS IdClient FROM reservations GROUP BY IdClient ORDER BY ReservationCount DESC", nativeQuery = true)
-    //@Query(value = "SELECT COUNT(r.idReservation ) AS c, r.client.idClient  AS i FROM Reservation r GROUP BY i ORDER BY c DESC")
+    // Experimental JPA query for multidb compatibility
+    //@Query(value = "SELECT COUNT(rt.idReservation), rt.client.idClient FROM Reservation rt LEFT JOIN FETCH rt.client rclt GROUP BY rt.client.idClient ORDER BY COUNT(rt.idReservation) DESC")
     List<ReservationCountPerClientProjection> getReservationsCountByClient();
 }
